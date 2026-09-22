@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Build Codex Skills Better than 99% of People — Nate Herk Masterclass</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --background: #0b0f19;
+      --card-bg: #111827;
+      --card-hover: #162033;
+      --card-border: #1f293d;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #3b82f6;
+      --primary-glow: rgba(59, 130, 246, 0.2);
+      --accent: #8b5cf6;
+      --accent-glow: rgba(139, 92, 246, 0.2);
+      --emerald: #10b981;
+      --amber: #f59e0b;
+      --rose: #f43f5e;
+      --code-bg: #090d16;
+    }
+
+    html.light {
+      --background: #f8fafc;
+      --card-bg: #ffffff;
+      --card-hover: #f1f5f9;
+      --card-border: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --primary: #2563eb;
+      --primary-glow: rgba(37, 99, 235, 0.1);
+      --accent: #7c3aed;
+      --accent-glow: rgba(124, 58, 237, 0.1);
+      --emerald: #059669;
+      --amber: #d97706;
+      --rose: #e11d48;
+      --code-bg: #f1f5f9;
+    }
+
+    body {
+      background-color: var(--background);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    code, pre {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .glass-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
+    }
+
+    .gradient-border {
+      position: relative;
+    }
+    .gradient-border::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.5), rgba(139, 92, 246, 0.3), transparent);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    /* Subtle custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--background);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--card-border);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--text-muted);
+    }
+
+    .badge-glow {
+      box-shadow: 0 0 15px -3px currentColor;
+    }
+
+    .step-pill.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+  </style>
+</head>
+<body class="min-h-screen selection:bg-blue-600/30 selection:text-blue-300">
+
+  <!-- Top Sticky Navigation Bar -->
+  <nav class="sticky top-0 z-50 backdrop-blur-md bg-opacity-80 border-b border-[var(--card-border)] bg-[var(--background)] px-4 py-3 transition-colors">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white font-black text-lg shadow-lg shadow-blue-500/30">
+          ⚡
+        </div>
+        <div>
+          <span class="font-extrabold text-sm md:text-base tracking-tight bg-gradient-to-r from-blue-400 to-indigo-300 bg-clip-text text-transparent">Codex Skills Masterclass</span>
+          <span class="hidden sm:inline-block text-xs px-2 py-0.5 ml-2 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 font-medium">Nate Herk Synthesis</span>
+        </div>
+      </div>
+
+      <div class="hidden md:flex items-center space-x-6 text-xs font-semibold text-[var(--text-muted)]">
+        <a href="#foundations" class="hover:text-blue-400 transition-colors">Foundations</a>
+        <a href="#framework" class="hover:text-blue-400 transition-colors">6-Step Framework</a>
+        <a href="#verification" class="hover:text-blue-400 transition-colors">Verification Loops</a>
+        <a href="#benchmark" class="hover:text-blue-400 transition-colors">Model Benchmark</a>
+        <a href="#templates" class="hover:text-blue-400 transition-colors">Templates</a>
+        <a href="#checklist" class="hover:text-blue-400 transition-colors">Audit Checklist</a>
+      </div>
+
+      <div class="flex items-center space-x-3">
+        <button id="themeToggle" class="p-2 rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)] hover:bg-[var(--card-hover)] text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors text-xs flex items-center gap-1.5" title="Toggle Theme">
+          <span id="themeIcon">☀️</span>
+          <span class="hidden sm:inline text-[11px] font-medium" id="themeText">Light</span>
+        </button>
+        <a href="https://www.youtube.com/watch?v=9KOtMsZ9I28" target="_blank" class="px-3 py-1.5 rounded-lg bg-red-600/10 text-red-400 border border-red-500/20 hover:bg-red-600/20 font-semibold text-xs flex items-center gap-1.5 transition-all">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          <span class="hidden sm:inline">Watch Video</span> (27m)
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-7xl mx-auto px-4 py-8 space-y-16">
+
+    <!-- HERO SECTION -->
+    <header class="relative rounded-3xl p-8 md:p-14 overflow-hidden border border-[var(--card-border)] glass-card gradient-border">
+      <div class="absolute -right-24 -top-24 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -left-24 -bottom-24 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 space-y-6">
+        <div class="flex flex-wrap items-center gap-2.5">
+          <span class="px-3.5 py-1 text-xs font-bold uppercase tracking-wider bg-blue-500/15 text-blue-400 border border-blue-500/30 rounded-full">
+            Autonomous Agent Architecture
+          </span>
+          <span class="px-3.5 py-1 text-xs font-semibold bg-purple-500/15 text-purple-300 border border-purple-500/30 rounded-full">
+            Codex & Claude Code Skills
+          </span>
+          <span class="px-3 py-1 text-xs bg-[var(--code-bg)] text-[var(--text-muted)] border border-[var(--card-border)] rounded-full">
+            Source: Nate Herk | AI Automation
+          </span>
+        </div>
+
+        <div class="space-y-3">
+          <h1 class="text-3xl sm:text-4xl md:text-6xl font-black tracking-tight leading-tight">
+            How to Build <span class="bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400 bg-clip-text text-transparent">Codex Skills</span> Better Than 99% of People
+          </h1>
+          <p class="text-base sm:text-lg md:text-xl text-[var(--text-muted)] max-w-4xl leading-relaxed">
+            Stop relying on fragile, one-off prompt engineering. Discover the battle-tested, 6-step framework used to transform agents into reliable employees with deterministic guardrails, multi-agent verification loops, and the evolutionary "Bike Method".
+          </p>
+        </div>
+
+        <!-- Quick Stats Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-[var(--card-border)]">
+          <div class="p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)]">
+            <div class="text-2xl md:text-3xl font-black text-blue-400">6 Steps</div>
+            <div class="text-xs text-[var(--text-muted)] uppercase tracking-wider font-semibold mt-1">Proven Framework</div>
+          </div>
+          <div class="p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)]">
+            <div class="text-2xl md:text-3xl font-black text-emerald-400">95%+</div>
+            <div class="text-xs text-[var(--text-muted)] uppercase tracking-wider font-semibold mt-1">Pass-Through Quality</div>
+          </div>
+          <div class="p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)]">
+            <div class="text-2xl md:text-3xl font-black text-purple-400">4 Models</div>
+            <div class="text-xs text-[var(--text-muted)] uppercase tracking-wider font-semibold mt-1">Multi-Tier Benchmark</div>
+          </div>
+          <div class="p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)]">
+            <div class="text-2xl md:text-3xl font-black text-amber-400">V15+</div>
+            <div class="text-xs text-[var(--text-muted)] uppercase tracking-wider font-semibold mt-1">Iterative Evolution</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- SECTION 1: FOUNDATIONS -->
+    <section id="foundations" class="space-y-8">
+      <div class="space-y-2">
+        <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-400">
+          <span>01 / Core Mental Models</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">What Actually Is a "Skill"?</h2>
+        <p class="text-sm sm:text-base text-[var(--text-muted)] max-w-3xl">
+          Understanding the philosophical difference between blind AI generation and standard operating procedures (SOPs).
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- The Pancake Analogy Card -->
+        <div class="glass-card rounded-2xl p-6 sm:p-8 space-y-5 border border-[var(--card-border)] relative overflow-hidden">
+          <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-2xl">
+            🥞
+          </div>
+          <h3 class="text-xl font-bold">The Chocolate Chip Pancake Analogy</h3>
+          <p class="text-sm text-[var(--text-muted)] leading-relaxed">
+            Imagine a world-famous master chef who bakes the most extraordinary chocolate chip pancakes. If you simply ask someone to "make pancakes", you might receive silver-dollar pancakes, burnt pancakes, or thin crepes.
+          </p>
+          <div class="p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)] space-y-2 text-xs">
+            <div class="flex items-start gap-2">
+              <span class="text-amber-400 font-bold">Chef's End Deliverable:</span>
+              <span class="text-[var(--text-main)]">The North Star / Definition of Done.</span>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-blue-400 font-bold">The Written Recipe:</span>
+              <span class="text-[var(--text-main)]">The <code>SKILL.md</code> file (exact ingredients, heat, timing, sequence).</span>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-emerald-400 font-bold">The Agent's Role:</span>
+              <span class="text-[var(--text-main)]">Executes the recipe without guessing what Nate prefers.</span>
+            </div>
+          </div>
+          <p class="text-xs text-[var(--text-muted)] italic">
+            Without a skill, an agent improvises blindly. With a skill, the agent replicates world-class execution every single time.
+          </p>
+        </div>
+
+        <!-- Anatomy of SKILL.md Card -->
+        <div class="glass-card rounded-2xl p-6 sm:p-8 space-y-5 border border-[var(--card-border)]">
+          <div class="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-2xl">
+            📄
+          </div>
+          <h3 class="text-xl font-bold">Anatomy of a <code>SKILL.md</code> File</h3>
+          <p class="text-sm text-[var(--text-muted)] leading-relaxed">
+            A skill is a pure, portable CommonMark markdown file composed of two distinct architectural tiers:
+          </p>
+          
+          <div class="space-y-3">
+            <div class="p-3.5 rounded-xl bg-[var(--code-bg)] border border-blue-500/30 text-xs">
+              <div class="font-bold text-blue-400 mb-1 flex items-center justify-between">
+                <span>1. YAML Frontmatter (Metadata Header)</span>
+                <span class="text-[10px] text-blue-300 font-mono">--- delimited</span>
+              </div>
+              <p class="text-[11px] text-[var(--text-muted)]">
+                Parsed by the agent orchestrator without reading the full file. Defines the <strong>name</strong>, the exact <strong>description & trigger conditions</strong>, and parameter hints.
+              </p>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-[var(--code-bg)] border border-purple-500/30 text-xs">
+              <div class="font-bold text-purple-400 mb-1 flex items-center justify-between">
+                <span>2. Instruction Body (The Meat)</span>
+                <span class="text-[10px] text-purple-300 font-mono">Markdown #, -, 1.</span>
+              </div>
+              <p class="text-[11px] text-[var(--text-muted)]">
+                Loaded into context *only after* the skill is triggered. Contains the step-by-step logic, heuristics, tool invocation guidelines, and mandatory verification gates.
+              </p>
+            </div>
+          </div>
+
+          <div class="text-xs text-[var(--text-muted)] pt-2 border-t border-[var(--card-border)] flex items-center justify-between">
+            <span>Storage: <code>.agents/skills/</code> or <code>.claude/skills/</code></span>
+            <span class="text-emerald-400 font-semibold">100% Portable</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: THE 6-STEP FRAMEWORK -->
+    <section id="framework" class="space-y-8">
+      <div class="space-y-2">
+        <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-400">
+          <span>02 / The Blueprint</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">The 6-Step Skill Building Framework</h2>
+        <p class="text-sm sm:text-base text-[var(--text-muted)] max-w-3xl">
+          Click any step below to explore its rationale, real-world analogies, and operational techniques.
+        </p>
+      </div>
+
+      <!-- Step Navigation Tabs -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5" id="stepTabs">
+        <button onclick="switchStep(1)" id="tab-1" class="step-pill active px-3 py-3 rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)] text-xs font-bold flex flex-col items-center gap-1 transition-all">
+          <span class="text-[10px] text-blue-400 font-mono">STEP 01</span>
+          <span>Reverse Engineer</span>
+        </button>
+        <button onclick="switchStep(2)" id="tab-2" class="step-pill px-3 py-3 rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)] text-xs font-bold flex flex-col items-center gap-1 transition-all">
+          <span class="text-[10px] text-blue-400 font-mono">STEP 02</span>
+          <span>1 Job, 1 Trigger</span>
+        </button>
+        <button onclick="switchStep(3)" id="tab-3" class="step-pill px-3 py-3 rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)] text-xs font-bold flex flex-col items-center gap-1 transition-all">
+          <span class="text-[10px] text-blue-400 font-mono">STEP 03</span>
+          <span>Freedom Level</span>
+        </button>
+        <button onclick="switchStep(4)" id="tab-4" class="step-pill px-3 py-3 rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)] text-xs font-bold flex flex-col items-center gap-1 transition-all">
+          <span class="text-[10px] text-blue-400 font-mono">STEP 04</span>
+          <span>Verification Loops</span>
+        </button>
+        <button onclick="switchStep(5)" id="tab-5" class="step-pill px-3 py-3 rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)] text-xs font-bold flex flex-col items-center gap-1 transition-all">
+          <span class="text-[10px] text-blue-400 font-mono">STEP 05</span>
+          <span>Walk Down Models</span>
+        </button>
+        <button onclick="switchStep(6)" id="tab-6" class="step-pill px-3 py-3 rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)] text-xs font-bold flex flex-col items-center gap-1 transition-all">
+          <span class="text-[10px] text-blue-400 font-mono">STEP 06</span>
+          <span>The Bike Method</span>
+        </button>
+      </div>
+
+      <!-- Step Content Display -->
+      <div id="stepContent" class="glass-card rounded-3xl p-6 sm:p-10 border border-[var(--card-border)] transition-all">
+        <!-- Will be populated dynamically by JS, defaults to Step 1 -->
+      </div>
+    </section>
+
+    <!-- SECTION 3: DEEP DIVE — VERIFICATION LOOPS -->
+    <section id="verification" class="space-y-8">
+      <div class="space-y-2">
+        <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-400">
+          <span>03 / Quality Assurance Architecture</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Objective vs. Subjective Verification</h2>
+        <p class="text-sm sm:text-base text-[var(--text-muted)] max-w-3xl">
+          Why your agent must never present you with a raw "Version 1" draft, and how to program LLM-as-a-Judge audits.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Objective Verification Card -->
+        <div class="glass-card rounded-2xl p-6 sm:p-8 border border-[var(--card-border)] space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="px-3 py-1 text-xs font-bold rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">
+              Deterministic Rules
+            </span>
+            <span class="text-xs font-mono text-[var(--text-muted)]">Binary: Pass / Fail</span>
+          </div>
+          <h3 class="text-xl font-bold">Objective Verification</h3>
+          <p class="text-sm text-[var(--text-muted)]">
+            Checks that can be mathematically or programmatically proven. Rules where $x = y$ or $count \ge N$.
+          </p>
+
+          <div class="space-y-2.5 pt-2">
+            <div class="flex items-start gap-3 p-3 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)]">
+              <span class="text-blue-400 font-bold text-sm">✓</span>
+              <div>
+                <div class="text-xs font-bold text-[var(--text-main)]">Exact Source & Citation Pipeline</div>
+                <div class="text-[11px] text-[var(--text-muted)]">Pull 500 sources $ightarrow$ filter to top 250 $ightarrow$ have Agent 2 check every factual claim.</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-3 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)]">
+              <span class="text-blue-400 font-bold text-sm">✓</span>
+              <div>
+                <div class="text-xs font-bold text-[var(--text-main)]">Structural & Count Gates</div>
+                <div class="text-[11px] text-[var(--text-muted)]">Minimum 7 H2 sections, exactly 10 screenshots, zero empty text blocks.</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-3 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)]">
+              <span class="text-blue-400 font-bold text-sm">✓</span>
+              <div>
+                <div class="text-xs font-bold text-[var(--text-main)]">Deterministic Formatting Assertions</div>
+                <div class="text-[11px] text-[var(--text-muted)]">Verify JSON schema compliance, file path existence, link 200 HTTP response codes.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Subjective Verification Card -->
+        <div class="glass-card rounded-2xl p-6 sm:p-8 border border-[var(--card-border)] space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="px-3 py-1 text-xs font-bold rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/20">
+              LLM-as-a-Judge
+            </span>
+            <span class="text-xs font-mono text-[var(--text-muted)]">Qualitative: 1-10 Rubric</span>
+          </div>
+          <h3 class="text-xl font-bold">Subjective Verification</h3>
+          <p class="text-sm text-[var(--text-muted)]">
+            Checks requiring aesthetic judgment, contextual nuance, visual inspection, and brand alignment.
+          </p>
+
+          <div class="space-y-2.5 pt-2">
+            <div class="flex items-start gap-3 p-3 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)]">
+              <span class="text-purple-400 font-bold text-sm">★</span>
+              <div>
+                <div class="text-xs font-bold text-[var(--text-main)]">Visual Asset Curation (Multimodal)</div>
+                <div class="text-[11px] text-[var(--text-muted)]">Agent inspects captured screenshot: Is it caught mid-animation? Is it cropped tightly to the focal point?</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-3 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)]">
+              <span class="text-purple-400 font-bold text-sm">★</span>
+              <div>
+                <div class="text-xs font-bold text-[var(--text-main)]">Privacy & Sensitive Data Scrubbing</div>
+                <div class="text-[11px] text-[var(--text-muted)]">Are customer emails, internal API tokens, or demo billing receipts redacted with solid black blocks?</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-3 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)]">
+              <span class="text-purple-400 font-bold text-sm">★</span>
+              <div>
+                <div class="text-xs font-bold text-[var(--text-main)]">Voice, Flow & Cadence Alignment</div>
+                <div class="text-[11px] text-[var(--text-muted)]">Does this sound authentic to Nate's writing style guide, or does it reek of generic AI jargon?</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- The 3 Mandatory Deliverables Box -->
+      <div class="p-6 rounded-2xl bg-gradient-to-r from-blue-950/30 via-indigo-950/30 to-purple-950/30 border border-blue-500/30 space-y-4">
+        <div class="flex items-center gap-2">
+          <span class="text-blue-400 font-bold text-sm">⚡ THE 3 PROOF ARTIFACTS</span>
+          <span class="text-xs text-[var(--text-muted)]">— Required by Nate's skills before completion</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+          <div class="p-3.5 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)] space-y-1">
+            <div class="font-bold text-blue-400">1. QA Verification Report</div>
+            <div class="text-[var(--text-muted)]">Proves checks were executed: 76 non-empty text blocks, 7 H2s, image counts, privacy review passed.</div>
+          </div>
+          <div class="p-3.5 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)] space-y-1">
+            <div class="font-bold text-indigo-300">2. Visual Plan Document</div>
+            <div class="text-[var(--text-muted)]">Log of timestamps chosen, rationale for each image, and placement alignment with text.</div>
+          </div>
+          <div class="p-3.5 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)] space-y-1">
+            <div class="font-bold text-purple-300">3. Selected Frames / Assets</div>
+            <div class="text-[var(--text-muted)]">The pre-cropped, spotlighted, and redacted visual files saved directly into the repository.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: MULTI-MODEL BENCHMARK & CASE STUDY -->
+    <section id="benchmark" class="space-y-8">
+      <div class="space-y-2">
+        <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-400">
+          <span>04 / Live Experimentation</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Multi-Model Stress Test: The "X Article" Skill</h2>
+        <p class="text-sm sm:text-base text-[var(--text-muted)] max-w-3xl">
+          Nate tested the exact same complex skill across 4 model tiers. Here is the unfiltered breakdown of runtime, visual intelligence, and failures.
+        </p>
+      </div>
+
+      <!-- Benchmark Table -->
+      <div class="overflow-x-auto rounded-2xl border border-[var(--card-border)] glass-card">
+        <table class="w-full text-left border-collapse text-xs md:text-sm">
+          <thead>
+            <tr class="border-b border-[var(--card-border)] bg-[var(--code-bg)] text-[var(--text-muted)] font-bold text-xs uppercase tracking-wider">
+              <th class="p-4">Model Tier</th>
+              <th class="p-4">Runtime</th>
+              <th class="p-4">Visual & Cognitive Intelligence</th>
+              <th class="p-4">Flaws / Failure Modes</th>
+              <th class="p-4">Nate's Verdict</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[var(--card-border)]">
+            <tr class="hover:bg-[var(--card-hover)] transition-colors">
+              <td class="p-4 font-bold text-amber-400 flex items-center gap-2">
+                <span>🌙 Luna</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/20">Lightweight</span>
+              </td>
+              <td class="p-4 font-mono">28m 33s</td>
+              <td class="p-4 space-y-1">
+                <div>• Clean image placement matching video concepts.</div>
+                <div>• Generated nice spotlight effect on pricing table.</div>
+                <div>• Captured Nate's conversational tone accurately.</div>
+              </td>
+              <td class="p-4 text-rose-300 space-y-1">
+                <div>• Duplicate title in opening sentence.</div>
+                <div>• Minor spacing glitch on first line.</div>
+                <div>• Missed 1 report screenshot.</div>
+              </td>
+              <td class="p-4 font-bold text-emerald-400">
+                Surprisingly great value. Beat Terra in editorial layout.
+              </td>
+            </tr>
+
+            <tr class="hover:bg-[var(--card-hover)] transition-colors">
+              <td class="p-4 font-bold text-blue-400 flex items-center gap-2">
+                <span>🌍 Terra</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-blue-500/10 border border-blue-500/20">Mid-Fast</span>
+              </td>
+              <td class="p-4 font-mono font-bold text-emerald-400">26m 00s (Fastest)</td>
+              <td class="p-4 space-y-1">
+                <div>• Zoomed in on eval score progression (88 $ightarrow$ 94).</div>
+                <div>• Black-box redacted sensitive receipt data.</div>
+              </td>
+              <td class="p-4 text-rose-300 space-y-1">
+                <div>• First 2 images cropped horribly.</div>
+                <div>• Captured frame mid-animation.</div>
+                <div>• <strong class="text-rose-400">Critical: Stacked 4 random images in a row at bottom.</strong></div>
+              </td>
+              <td class="p-4 font-bold text-rose-400">
+                Disappointing. Failed editorial verification despite higher cost.
+              </td>
+            </tr>
+
+            <tr class="hover:bg-[var(--card-hover)] transition-colors">
+              <td class="p-4 font-bold text-purple-400 flex items-center gap-2">
+                <span>⚡ Soul</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-purple-500/10 border border-purple-500/20">High Reasoning</span>
+              </td>
+              <td class="p-4 font-mono text-rose-300">38m 00s (Slowest)</td>
+              <td class="p-4 space-y-1">
+                <div>• High vision intelligence: zoomed into table columns.</div>
+                <div>• Redacted internal source IDs & sensitive receipts.</div>
+                <div>• Spotlights on revenue and customer support figures.</div>
+              </td>
+              <td class="p-4 text-rose-300 space-y-1">
+                <div>• Highlighted pass/fail count rather than final score 88.</div>
+                <div>• Heavy latency on browser actions.</div>
+              </td>
+              <td class="p-4 font-bold text-purple-300">
+                Very strong visual curation; high detail retention.
+              </td>
+            </tr>
+
+            <tr class="hover:bg-[var(--card-hover)] transition-colors bg-blue-500/5">
+              <td class="p-4 font-bold text-blue-300 flex items-center gap-2">
+                <span>👑 Astra</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-blue-500/20 border border-blue-500/40 text-blue-300 font-extrabold">Production Baseline</span>
+              </td>
+              <td class="p-4 font-mono font-bold">Fast Mode / Low Effort</td>
+              <td class="p-4 space-y-1">
+                <div>• Flawless browser drag-and-drop navigation.</div>
+                <div>• Precise automatic spotlighting & clean cropping.</div>
+                <div>• Passes 100% of objective & subjective QA checks.</div>
+              </td>
+              <td class="p-4 text-[var(--text-muted)]">
+                <div>• Highest per-token cost tier.</div>
+              </td>
+              <td class="p-4 font-bold text-blue-400">
+                Nate's daily driver for publishing-ready content.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 5: TEMPLATES & SCRIPTS -->
+    <section id="templates" class="space-y-8">
+      <div class="space-y-2">
+        <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-400">
+          <span>05 / Production Blueprints</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Copy-Ready Skill & Feedback Templates</h2>
+        <p class="text-sm sm:text-base text-[var(--text-muted)] max-w-3xl">
+          Use these exact templates to scaffold your next skill and operationalize the Bike Method feedback loop.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- SKILL.md Template -->
+        <div class="glass-card rounded-2xl p-6 border border-[var(--card-border)] space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-sm">Production <code>SKILL.md</code> Template</span>
+            </div>
+            <button onclick="copyToClipboard('skillCode', this)" class="px-3 py-1 rounded-lg bg-blue-600/10 text-blue-400 border border-blue-500/20 hover:bg-blue-600/20 text-xs font-semibold flex items-center gap-1.5 transition-colors">
+              <span>Copy Code</span>
+            </button>
+          </div>
+          <pre class="p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)] text-xs text-[var(--text-muted)] overflow-x-auto max-h-96 leading-relaxed" id="skillCode"><code>---
+name: video-to-x-article
+description: Use this skill whenever the user asks to turn a YouTube video into a long-form X (Twitter) article.
+argument_hint: [YouTube URL or Video File Path]
+---
+
+# Video to X Article Transformation Skill
+
+## 1. Goal & Definition of Done
+Transform the provided video into an engaging, publication-ready X article following Nate's voice and visual standards.
+The output is DONE only when:
+1. Article text is drafted in punchy, direct cadence.
+2. 8-12 clean screenshots are cropped, spotlighted, and embedded.
+3. Sensitive customer details or internal tokens are redacted.
+4. QA Verification Report is generated and passes all criteria.
+
+## 2. Freedom Level & Operating Mode
+- Mode: Non-Deterministic / High Judgment (Content & Visuals).
+- Strict Deterministic Constraints: Privacy redaction, max 1 image per text block, minimum 7 H2 sections.
+
+## 3. Workflow Steps
+1. Transcribe & Outline:
+   - Extract transcript, extract key takeaways, establish 3-5 narrative pillars.
+2. Draft Article:
+   - Write clear, engaging H2 headers. Keep paragraphs to 1-3 sentences.
+3. Visual Extraction (Browser / Tool Use):
+   - Review video keyframes. Select clean, non-transition frames.
+   - Crop to focal area; add spotlights to key numbers/charts.
+   - Redact all sensitive receipts/IDs with black boxes.
+4. Layout & QA:
+   - Insert images directly beneath corresponding narrative sections.
+   - Never stack multiple images consecutively.
+
+## 4. Verification Loop (Mandatory QA)
+Output formal QA Report before presenting final result:
+- [ ] 8 to 12 inline screenshots verified
+- [ ] At least 5 distinct H2 sections
+- [ ] 0 exposed private receipts / IDs
+- [ ] Subjective: No mid-animation or blurry frames
+- [ ] Subjective: Conversational, punchy human tone</code></pre>
+        </div>
+
+        <!-- The Bike Method Prompt Template -->
+        <div class="glass-card rounded-2xl p-6 border border-[var(--card-border)] space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-sm">The "Bike Method" Feedback Prompt</span>
+            </div>
+            <button onclick="copyToClipboard('feedbackPrompt', this)" class="px-3 py-1 rounded-lg bg-purple-600/10 text-purple-300 border border-purple-500/20 hover:bg-purple-600/20 text-xs font-semibold flex items-center gap-1.5 transition-colors">
+              <span>Copy Prompt</span>
+            </button>
+          </div>
+          <pre class="p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)] text-xs text-[var(--text-muted)] overflow-x-auto max-h-96 leading-relaxed" id="feedbackPrompt"><code>[Agent Name], here is my operational critique on your latest run:
+
+WHAT WORKED WELL:
+- [Praise specific element: e.g., "The spotlight on the pricing chart was sharp and accurate."]
+- [Praise specific tone: e.g., "The opening hook was concise and punchy."]
+
+WHAT FAILED / REQUIRES CORRECTION:
+- [Specify error 1: e.g., "In Section 2, the screenshot was taken mid-animation and looks blurry."]
+- [Specify error 2: e.g., "You stacked 4 images at the end of the post without descriptive text."]
+- [Specify error 3: e.g., "The opening title was duplicated into the first body paragraph."]
+
+MANDATORY ACTION:
+1. Analyze this critique and explain WHY this breakdown occurred.
+2. Update your `SKILL.md` file permanently so that:
+   - Specific guardrails prevent these exact failure modes.
+   - The verification checklist is updated to catch this automatically.
+3. Show me the diff of `SKILL.md` before proceeding.</code></pre>
+          <div class="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-300">
+            <strong>The Golden Rule:</strong> If you manually fix an agent's mistake without telling it to update <code>SKILL.md</code>, you will be forced to manually fix it again next time.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: INTERACTIVE SKILL AUDIT CHECKLIST -->
+    <section id="checklist" class="space-y-8">
+      <div class="space-y-2">
+        <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-400">
+          <span>06 / Interactive Self-Audit</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Is Your Skill in the Top 1%?</h2>
+        <p class="text-sm sm:text-base text-[var(--text-muted)] max-w-3xl">
+          Check each item to score your current skill against Nate Herk's 6-step framework.
+        </p>
+      </div>
+
+      <div class="glass-card rounded-3xl p-6 sm:p-10 border border-[var(--card-border)] space-y-6">
+        <div class="flex items-center justify-between border-b border-[var(--card-border)] pb-4">
+          <div>
+            <div class="text-lg font-bold">Skill Readiness Score</div>
+            <div class="text-xs text-[var(--text-muted)]">Check off the requirements below as you implement them</div>
+          </div>
+          <div class="text-right">
+            <span class="text-3xl font-black text-blue-400" id="scoreDisplay">0%</span>
+            <span class="text-xs text-[var(--text-muted)] block" id="scoreRating">Unprepared</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="auditItems">
+          <!-- Item 1 -->
+          <label class="flex items-start gap-3 p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)] cursor-pointer hover:border-blue-500/50 transition-colors">
+            <input type="checkbox" onchange="updateScore()" class="audit-check mt-1 rounded text-blue-600 focus:ring-0">
+            <div class="text-xs">
+              <span class="font-bold text-[var(--text-main)] block">1. Reverse-Engineered from Golden Output</span>
+              <span class="text-[var(--text-muted)]">Skill was created by backward-analyzing a finished, approved deliverable.</span>
+            </div>
+          </label>
+
+          <!-- Item 2 -->
+          <label class="flex items-start gap-3 p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)] cursor-pointer hover:border-blue-500/50 transition-colors">
+            <input type="checkbox" onchange="updateScore()" class="audit-check mt-1 rounded text-blue-600 focus:ring-0">
+            <div class="text-xs">
+              <span class="font-bold text-[var(--text-main)] block">2. Atomic Scope (One Job, One Trigger)</span>
+              <span class="text-[var(--text-muted)]">Does not attempt to "run marketing"; solves one leaf task with a clear trigger.</span>
+            </div>
+          </label>
+
+          <!-- Item 3 -->
+          <label class="flex items-start gap-3 p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)] cursor-pointer hover:border-blue-500/50 transition-colors">
+            <input type="checkbox" onchange="updateScore()" class="audit-check mt-1 rounded text-blue-600 focus:ring-0">
+            <div class="text-xs">
+              <span class="font-bold text-[var(--text-main)] block">3. Freedom Level Calibrated</span>
+              <span class="text-[var(--text-muted)]">Deterministic tasks are rule-bound; non-deterministic tasks have clear heuristics.</span>
+            </div>
+          </label>
+
+          <!-- Item 4 -->
+          <label class="flex items-start gap-3 p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)] cursor-pointer hover:border-blue-500/50 transition-colors">
+            <input type="checkbox" onchange="updateScore()" class="audit-check mt-1 rounded text-blue-600 focus:ring-0">
+            <div class="text-xs">
+              <span class="font-bold text-[var(--text-main)] block">4. Multi-Agent Verification Loop</span>
+              <span class="text-[var(--text-muted)]">Self-check or subagent review is built-in; V1 is never delivered to the user.</span>
+            </div>
+          </label>
+
+          <!-- Item 5 -->
+          <label class="flex items-start gap-3 p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)] cursor-pointer hover:border-blue-500/50 transition-colors">
+            <input type="checkbox" onchange="updateScore()" class="audit-check mt-1 rounded text-blue-600 focus:ring-0">
+            <div class="text-xs">
+              <span class="font-bold text-[var(--text-main)] block">5. Objective & Subjective QA Gates</span>
+              <span class="text-[var(--text-muted)]">Includes programmatic counts AND LLM-as-a-judge aesthetic/privacy review.</span>
+            </div>
+          </label>
+
+          <!-- Item 6 -->
+          <label class="flex items-start gap-3 p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)] cursor-pointer hover:border-blue-500/50 transition-colors">
+            <input type="checkbox" onchange="updateScore()" class="audit-check mt-1 rounded text-blue-600 focus:ring-0">
+            <div class="text-xs">
+              <span class="font-bold text-[var(--text-main)] block">6. Walked Down the Model Ladder</span>
+              <span class="text-[var(--text-muted)]">Tested on cheaper models (Terra/Luna) and lowest effort tier before production.</span>
+            </div>
+          </label>
+
+          <!-- Item 7 -->
+          <label class="flex items-start gap-3 p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)] cursor-pointer hover:border-blue-500/50 transition-colors">
+            <input type="checkbox" onchange="updateScore()" class="audit-check mt-1 rounded text-blue-600 focus:ring-0">
+            <div class="text-xs">
+              <span class="font-bold text-[var(--text-main)] block">7. Bike Method Active (Feedback Loop)</span>
+              <span class="text-[var(--text-muted)]">Every run ends with corrective feedback that mutates the skill markdown file.</span>
+            </div>
+          </label>
+
+          <!-- Item 8 -->
+          <label class="flex items-start gap-3 p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)] cursor-pointer hover:border-blue-500/50 transition-colors">
+            <input type="checkbox" onchange="updateScore()" class="audit-check mt-1 rounded text-blue-600 focus:ring-0">
+            <div class="text-xs">
+              <span class="font-bold text-[var(--text-main)] block">8. Formal Proof Artifacts Produced</span>
+              <span class="text-[var(--text-muted)]">Generates a QA Verification report, visual plan, or structured audit log.</span>
+            </div>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-[var(--card-border)] pt-8 pb-12 text-xs text-[var(--text-muted)] flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span>Codex Skills Synthesis — Based on Nate Herk's Masterclass Framework</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="https://github.com/kartorhys-ship-it/CodexChad" target="_blank" class="hover:text-blue-400 transition-colors">GitHub Repository (CodexChad)</a>
+        <span>•</span>
+        <a href="https://www.youtube.com/watch?v=9KOtMsZ9I28" target="_blank" class="hover:text-red-400 transition-colors">Original Video</a>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none bg-blue-600 text-white px-4 py-2.5 rounded-xl shadow-2xl text-xs font-semibold flex items-center gap-2">
+    <span>✓ Copied to clipboard!</span>
+  </div>
+
+  <script>
+    // Step details content dictionary
+    const stepsData = {
+      1: {
+        title: "Step 1: Reverse Engineer the Output",
+        tagline: "Start with the Definition of Done (The Chicken Parm Principle)",
+        content: `
+          <div class="space-y-6">
+            <div class="p-4 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-xs sm:text-sm text-blue-300 leading-relaxed">
+              <strong>The Chicken Parm Metaphor:</strong> If you ask an agent for "chicken", you might get chicken salad, boiled chicken thighs, or a sandwich. If you actually wanted Chicken Parmesan on pasta, you must provide the finished dish first and work backwards.
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+              <div class="p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)] space-y-2">
+                <span class="font-bold text-rose-400 text-sm">❌ The Common Mistake</span>
+                <p class="text-[var(--text-muted)]">Writing instructions forward from scratch: <em>"Build me a skill for creating a YouTube dashboard."</em> You and the agent will have vastly different assumptions, leading to frustrating revisions.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)] space-y-2">
+                <span class="font-bold text-emerald-400 text-sm">✓ The 1% Methodology</span>
+                <p class="text-[var(--text-muted)]">Take your best manual Excel sheet, report, or post deliverable. Give it to the agent: <em>"Analyze this output. Ask me what data was pulled, how calculations were made, and build the skill backwards from this North Star."</em></p>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)] space-y-2 text-xs">
+              <div class="font-bold text-blue-400">Reverse-Engineering Interview Prompts:</div>
+              <ul class="list-disc list-inside space-y-1 text-[var(--text-muted)]">
+                <li>Where did each column of raw data originate?</li>
+                <li>What exact logic decided which rows were kept or discarded?</li>
+                <li>What tone, formatting, and layout constraints make this output look professional?</li>
+              </ul>
+            </div>
+          </div>
+        `
+      },
+      2: {
+        title: "Step 2: One Specific Job, One Specific Trigger",
+        tagline: "Atomic Task Scoping via the Function Tree",
+        content: `
+          <div class="space-y-6">
+            <div class="p-4 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-xs sm:text-sm text-indigo-300 leading-relaxed">
+              <strong>The Job Tree Concept (from <em>Becoming AI Native</em>):</strong> Your job is a tree. The trunk is the role (Marketing). The branches are workflows (Content Repurposing). The leaves are atomic tasks (Turn YouTube Video into an X Article). <strong>Turn leaves into skills, not trunks.</strong>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+              <div class="p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)] space-y-2">
+                <span class="font-bold text-blue-400 text-sm">YAML Metadata Frontmatter</span>
+                <p class="text-[var(--text-muted)]">Keep the YAML description razor-sharp. It allows the agent to auto-invoke the skill cleanly without confusing it with other workflows.</p>
+                <pre class="p-2 rounded bg-black/40 text-[10px] text-blue-300"><code>description: Use this skill ONLY when turning a YouTube video URL into a long-form X article.</code></pre>
+              </div>
+              <div class="p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)] space-y-2">
+                <span class="font-bold text-purple-400 text-sm">Dual Invocations</span>
+                <p class="text-[var(--text-muted)]">A well-defined skill supports both natural language triggers (<em>"Turn this video into an X post"</em>) and explicit slash commands (<code>/x-article</code>).</p>
+                <div class="text-[11px] text-[var(--text-muted)]">Atomic skills can be chained together in higher-level agent loops.</div>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      3: {
+        title: "Step 3: Choose the Freedom Level",
+        tagline: "Balancing Deterministic Rules with Non-Deterministic Reasoning",
+        content: `
+          <div class="space-y-6">
+            <div class="p-4 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-xs sm:text-sm text-blue-300 leading-relaxed">
+              Every process sits on a spectrum between <strong>Deterministic (Hard Rules)</strong> and <strong>Non-Deterministic (LLM Judgment)</strong>. Misclassifying where your skill lives is the #1 cause of agent failure.
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+              <div class="p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)] space-y-2">
+                <span class="font-bold text-blue-400 text-sm">High Constraint (Deterministic)</span>
+                <div class="text-[var(--text-muted)]">Data pipelines, CRM syncs, calculation sheets.</div>
+                <div class="p-2.5 rounded bg-black/40 text-[11px] text-emerald-300">
+                  Write rigid, numbered steps: <em>"Step 1: Check if value > 10. Step 2: Write to column C."</em> Do not allow creative improvisation.
+                </div>
+              </div>
+
+              <div class="p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)] space-y-2">
+                <span class="font-bold text-purple-400 text-sm">High Freedom (Non-Deterministic)</span>
+                <div class="text-[var(--text-muted)]">Video summarization, article writing, screenshot placement.</div>
+                <div class="p-2.5 rounded bg-black/40 text-[11px] text-purple-300">
+                  Provide heuristics and quality criteria. Never hardcode timestamps like <em>"screenshot at 2:00"</em> because every video is unique.
+                </div>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      4: {
+        title: "Step 4: Build Verification Loops",
+        tagline: "Never Let the Agent Hand You Version 1",
+        content: `
+          <div class="space-y-6">
+            <div class="p-4 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-xs sm:text-sm text-purple-300 leading-relaxed">
+              The purpose of a skill is to deliver an output that has already undergone rigorous self-checking. Nate's skills loop through sub-agents to deliver a polished <strong>V7 or V16</strong>, saving hours of human review time.
+            </div>
+
+            <div class="p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)] space-y-3 text-xs">
+              <div class="font-bold text-sm text-[var(--text-main)]">The Human Stamp-of-Approval Test:</div>
+              <p class="text-[var(--text-muted)]">
+                Ask yourself: <em>"If I assigned this task to a human intern, what exact checklist would I look through before publishing?"</em> Convert that exact inspection into the skill's verification loop.
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2">
+                <div class="p-2.5 rounded bg-black/40 border border-blue-500/20 text-blue-300">
+                  <strong>Objective:</strong> Word count, citation audit, 10 image limit.
+                </div>
+                <div class="p-2.5 rounded bg-black/40 border border-purple-500/20 text-purple-300">
+                  <strong>Subjective:</strong> LLM-as-a-judge for layout, tone, and privacy.
+                </div>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      5: {
+        title: "Step 5: Walk Down the Models & Effort Level",
+        tagline: "Cost, Speed & Compute Optimization",
+        content: `
+          <div class="space-y-6">
+            <div class="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-xs sm:text-sm text-amber-300 leading-relaxed">
+              Don't default to the most expensive flagship model for every task. Build on frontier models, then <strong>"walk down"</strong> the hierarchy until you find the cheapest model that still passes your verification gates.
+            </div>
+
+            <div class="space-y-3 text-xs">
+              <div class="flex items-center gap-3 p-3 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)]">
+                <span class="w-7 h-7 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold">1</span>
+                <div>
+                  <strong class="text-[var(--text-main)]">Walk Down Models:</strong>
+                  <span class="text-[var(--text-muted)]">Astra (Opus-tier) $ightarrow$ Soul (Sonnet-tier) $ightarrow$ Terra (Haiku-tier) $ightarrow$ Luna (Flash-tier).</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-3 p-3 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)]">
+                <span class="w-7 h-7 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold">2</span>
+                <div>
+                  <strong class="text-[var(--text-main)]">Walk Down Reasoning Effort:</strong>
+                  <span class="text-[var(--text-muted)]">Once model is selected, dial effort from High $ightarrow$ Medium $ightarrow$ Low / Fast mode.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-xs text-[var(--text-muted)] italic">
+              Example: Generating YouTube descriptions & timestamps runs flawlessly on Luna. Complex browser-based image curation requires Soul or Astra.
+            </div>
+          </div>
+        `
+      },
+      6: {
+        title: "Step 6: The Bike Method",
+        tagline: "Teaching the Agent to Ride & Mutating the Skill File",
+        content: `
+          <div class="space-y-6">
+            <div class="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-xs sm:text-sm text-emerald-300 leading-relaxed">
+              <strong>The Bike Metaphor:</strong> You start with your hands firmly on the handlebars. You give immediate feedback. You remove training wheels, then elbow pads. But you never remove the helmet and send them onto the highway. Guardrails always remain.
+            </div>
+
+            <div class="p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--card-border)] space-y-3 text-xs">
+              <div class="font-bold text-emerald-400 text-sm">The Continuous Evolutionary Loop:</div>
+              <p class="text-[var(--text-muted)]">
+                A skill is never finished. After every single run, examine what the agent did well and what it botched. Send immediate feedback and mandate:
+              </p>
+              <div class="p-3 rounded-lg bg-black/50 border border-emerald-500/30 text-emerald-300 font-mono text-[11px]">
+                "Analyze this feedback, understand why this mistake happened, and update SKILL.md so you never make it again."
+              </div>
+              <p class="text-[var(--text-muted)]">
+                Over 25+ iterations, your skill accumulates elite edge-case handling that manual prompt engineering could never achieve.
+              </p>
+            </div>
+          </div>
+        `
+      }
+    };
+
+    function switchStep(stepNum) {
+      // Update tabs
+      for (let i = 1; i <= 6; i++) {
+        const tab = document.getElementById('tab-' + i);
+        if (i === stepNum) {
+          tab.classList.add('active');
+        } else {
+          tab.classList.remove('active');
+        }
+      }
+
+      // Update content
+      const data = stepsData[stepNum];
+      const container = document.getElementById('stepContent');
+      container.innerHTML = `
+        <div class="space-y-4">
+          <div class="space-y-1">
+            <span class="text-xs font-mono text-blue-400 font-bold uppercase tracking-wider">Step ${stepNum} of 6</span>
+            <h3 class="text-2xl font-extrabold text-[var(--text-main)]">${data.title}</h3>
+            <p class="text-xs sm:text-sm text-[var(--text-muted)] font-medium">${data.tagline}</p>
+          </div>
+          <div class="pt-4 border-t border-[var(--card-border)]">
+            ${data.content}
+          </div>
+        </div>
+      `;
+    }
+
+    // Initialize step 1
+    switchStep(1);
+
+    // Theme toggle
+    const themeBtn = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const themeText = document.getElementById('themeText');
+    const htmlEl = document.documentElement;
+
+    themeBtn.addEventListener('click', () => {
+      if (htmlEl.classList.contains('dark')) {
+        htmlEl.classList.remove('dark');
+        htmlEl.classList.add('light');
+        themeIcon.textContent = '🌙';
+        themeText.textContent = 'Dark';
+      } else {
+        htmlEl.classList.remove('light');
+        htmlEl.classList.add('dark');
+        themeIcon.textContent = '☀️';
+        themeText.textContent = 'Light';
+      }
+    });
+
+    // Copy to clipboard with toast
+    function copyToClipboard(elementId, btn) {
+      const codeText = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(codeText).then(() => {
+        const toast = document.getElementById('toast');
+        toast.classList.remove('translate-y-20', 'opacity-0');
+        setTimeout(() => {
+          toast.classList.add('translate-y-20', 'opacity-0');
+        }, 2200);
+      });
+    }
+
+    // Interactive Checklist scoring
+    function updateScore() {
+      const checks = document.querySelectorAll('.audit-check');
+      let checked = 0;
+      checks.forEach(c => { if (c.checked) checked++; });
+      const percent = Math.round((checked / checks.length) * 100);
+      const scoreDisplay = document.getElementById('scoreDisplay');
+      const scoreRating = document.getElementById('scoreRating');
+
+      scoreDisplay.innerText = percent + '%';
+      if (percent === 100) {
+        scoreDisplay.className = 'text-3xl font-black text-emerald-400';
+        scoreRating.innerText = 'Top 1% Elite Skill';
+      } else if (percent >= 75) {
+        scoreDisplay.className = 'text-3xl font-black text-blue-400';
+        scoreRating.innerText = 'Advanced Agent Skill';
+      } else if (percent >= 50) {
+        scoreDisplay.className = 'text-3xl font-black text-purple-400';
+        scoreRating.innerText = 'Intermediate Skill';
+      } else {
+        scoreDisplay.className = 'text-3xl font-black text-amber-400';
+        scoreRating.innerText = 'Needs Iteration';
+      }
+    }
+  </script>
+</body>
+</html>
