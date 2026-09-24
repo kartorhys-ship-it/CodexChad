@@ -52,3 +52,7 @@ Do not repeat lessons the learner has demonstrated, claim mastery from passive r
 
 Record the lesson's outcome, the learner's demonstrated evidence, remaining uncertainty, and a suggested next step. Keep learning notes separate from project decisions: if the learner approves a technical or product choice for a real project, transfer that decision into its own project artifact with its rationale and status.
 
+## Sources and adaptation
+
+- Source video: [YouTube](https://youtu.be/s5T5oQJcJ6U).
+- This skill is an independently written practical synthesis of the source's workflow ideas. It does not reproduce the video transcript.
