@@ -65,3 +65,7 @@ Stop after handoff to the specification and implementation workflow. A cleared d
 - Later items are revised when earlier decisions invalidate their assumptions.
 - The final spec retains user intent, tradeoffs, scope, and proof criteria without treating the whole map as permanent truth.
 
+## Sources and adaptation
+
+- Source video: [YouTube](https://youtu.be/F3lL98Pj90o).
+- This skill is an independently written practical synthesis of the source's workflow ideas. It does not reproduce the video transcript.
