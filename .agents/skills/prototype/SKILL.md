@@ -46,3 +46,7 @@ Carry the decision—not the prototype's incidental implementation—into the du
 
 The decision owner can answer the original question from the prototype and the result is recorded where implementation planning can find it. If the experiment exposes a larger question, state it and propose a smaller next experiment rather than expanding this one without bounds.
 
+## Sources and adaptation
+
+- Source video: [YouTube](https://www.youtube.com/watch?v=n0VhIVtviC0).
+- This skill is an independently written practical synthesis of the source's workflow ideas. It does not reproduce the video transcript.
