@@ -35,3 +35,7 @@ Before passing it on, read the document as a fresh agent would. Check that it na
 
 Report the handoff path or link and one-sentence next step. Do not claim the receiving session has completed work unless its result has been observed.
 
+## Sources and adaptation
+
+- Source video: [YouTube](https://youtu.be/dtAJ2dOd3ko).
+- This skill is an independently written practical synthesis of the source's workflow ideas. It does not reproduce the video transcript.
