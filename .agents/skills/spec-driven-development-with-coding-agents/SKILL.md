@@ -108,3 +108,7 @@ Before calling a meaningful feature complete, be able to point to:
 
 If any item is missing, state the gap clearly and identify the next action or owner.
 
+## Sources and adaptation
+
+- Source video: [YouTube](https://youtu.be/hy8UstR2NEg).
+- This skill is an independently written practical synthesis of the source's spec-driven development ideas for coding-agent workflows. It does not reproduce the video transcript.
